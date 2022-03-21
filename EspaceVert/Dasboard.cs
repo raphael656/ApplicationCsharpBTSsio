@@ -17,10 +17,22 @@ namespace EspaceVert
             InitializeComponent();
         }
 
+        public void loadform(object Form)
+        {
+            if (this.mainPanel.Controls.Count > 0)
+                this.mainPanel.Controls.RemoveAt(0);
+            Form f = Form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            this.mainPanel.Controls.Add(f);
+            this.mainPanel.Tag = f;
+            f.Show();
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             MainWindows main = new MainWindows();
             main.ShowDialog();
+           
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -41,6 +53,26 @@ namespace EspaceVert
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dashButton_Click(object sender, EventArgs e)
+        {
+            loadform(new ContenuDashboard());
+        }
+
+        private void gestProdButton(object sender, EventArgs e)
+        {
+            loadform(new gestionProduitForms());
+        }
+
+        private void addProdButtonS(object sender, EventArgs e)
+        {
+            loadform(new ajoutProduit());
+        }
+
+        private void gestAdminButton(object sender, EventArgs e)
+        {
+            loadform(new gestionAdmin());
         }
     }
 }
